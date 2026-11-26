@@ -51,3 +51,15 @@ Grab the ready-to-use ZIP archive from `release/Typography101-Complete-Font-Pack
 npm install
 npm run build
 ```
+
+---
+
+## License
+
+Copyright (c) 2026 **Dieu Anh** — licensed under the **[SIL Open Font License, Version 1.1 (OFL-1.1)](LICENSE)** with Reserved Font Names `"Typography101"` and `"Typography101 VN"`.
+
+- **Free for personal & commercial use**: You may use, embed, bundle, and print documents/websites/apps using these fonts freely.
+- **No standalone resale**: Neither the original nor modified font files may be sold by themselves.
+- **Reserved Font Names**: Any modified/forked versions must use a different font name and remain licensed under OFL-1.1.
+- Full license text: [LICENSE](LICENSE) / [OFL.txt](OFL.txt).
+

@@ -138,8 +138,11 @@ function buildFontStyle(allGlyphs, familyName, filePrefix, styleName, italicDeg 
     ascender: 1180,
     descender: -300,
     glyphs: otGlyphs,
-    copyright: `${familyName} Complete Typeface Set (derived from TYPOGRAPHY101.ai)`,
-    designer: 'Typography101 Original + Extended & Vietnamese Set',
+    copyright: 'Copyright (c) 2026 Dieu Anh (https://github.com/sdadsds/typography101-font), with Reserved Font Name "Typography101" and "Typography101 VN".',
+    designer: 'Dieu Anh',
+    designerURL: 'https://github.com/sdadsds/typography101-font',
+    license: 'This Font Software is licensed under the SIL Open Font License, Version 1.1. Available at https://openfontlicense.org',
+    licenseURL: 'https://openfontlicense.org',
     version: 'Version 1.100'
   });
 
@@ -211,8 +214,9 @@ ${kernXml}
 </svg>`;
 
   const ttfResult = svg2ttf(svgFontXml, {
-    copyright: `${familyName} Complete Typeface Set`,
-    description: 'Complete modular typeface derived from TYPOGRAPHY101.ai with full Vietnamese keyboard support',
+    copyright: 'Copyright (c) 2026 Dieu Anh — SIL Open Font License 1.1 (https://openfontlicense.org)',
+    description: 'Complete modular typeface derived from TYPOGRAPHY101.ai with full Vietnamese keyboard support (OFL-1.1)',
+    url: 'https://github.com/sdadsds/typography101-font',
     subfamily: styleName,
     version: '1.1'
   });
