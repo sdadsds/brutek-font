@@ -1,0 +1,8 @@
+node_modules/
+scripts/debug_*.png
+scripts/zoom_*.png
+scripts/page_*_stream.txt
+source/TYPOGRAPHY101.pdf
+*.log
+.DS_Store
+Thumbs.db

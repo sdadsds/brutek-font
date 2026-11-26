@@ -1,0 +1,19 @@
+{
+  "name": "typography101-font",
+  "version": "1.0.0",
+  "description": "Complete typeable font family (Regular & 20° Italic, Extended Latin & Vietnamese Telex/VNI) built from TYPOGRAPHY101.ai",
+  "private": true,
+  "scripts": {
+    "build": "node src/build_fonts.js && node src/build_specimens.js",
+    "build:fonts": "node src/build_fonts.js",
+    "build:specimens": "node src/build_specimens.js",
+    "audit": "node scripts/audit_all_vectors.js"
+  },
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "opentype.js": "^1.3.4",
+    "paper": "^0.12.18",
+    "svg2ttf": "^6.0.3",
+    "ttf2woff2": "^8.0.1"
+  }
+}
