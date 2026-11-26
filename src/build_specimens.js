@@ -14,14 +14,14 @@ function loadFont(filePath) {
   return opentype.parse(buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength));
 }
 
-const regOtf = loadFont(path.join(DIST, 'Typography101-Regular.otf'));
-const itaOtf = loadFont(path.join(DIST, 'Typography101-Italic.otf'));
-const regTtf = loadFont(path.join(DIST, 'Typography101-Regular.ttf'));
-const itaTtf = loadFont(path.join(DIST, 'Typography101-Italic.ttf'));
-const vnRegOtf = loadFont(path.join(DIST, 'Typography101VN-Regular.otf'));
-const vnItaOtf = loadFont(path.join(DIST, 'Typography101VN-Italic.otf'));
+const regOtf = loadFont(path.join(DIST, 'Brutek-Regular.otf'));
+const itaOtf = loadFont(path.join(DIST, 'Brutek-Italic.otf'));
+const regTtf = loadFont(path.join(DIST, 'Brutek-Regular.ttf'));
+const itaTtf = loadFont(path.join(DIST, 'Brutek-Italic.ttf'));
+const vnRegOtf = loadFont(path.join(DIST, 'BrutekVN-Regular.otf'));
+const vnItaOtf = loadFont(path.join(DIST, 'BrutekVN-Italic.otf'));
 
-const getName = f => (f.names.windows?.fullName?.en || f.names.macintosh?.fullName?.en || f.names.fullName?.en || 'Typography101');
+const getName = f => (f.names.windows?.fullName?.en || f.names.macintosh?.fullName?.en || f.names.fullName?.en || 'Brutek');
 console.log('Verified binary loads:');
 console.log('  Regular OTF:', getName(regOtf), 'glyphs:', regOtf.glyphs.length);
 console.log('  Italic  OTF:', getName(itaOtf), 'glyphs:', itaOtf.glyphs.length);
@@ -60,9 +60,10 @@ function buildFlagshipPoster() {
   svg += `<g clip-path="url(#sidebarClip)">`;
   svg += renderTextPath(regOtf, '\uE000', 48, 1340, 1280, '#1f1f1f', false);
   svg += `</g>`;
-  svg += renderTextPath(regOtf, 'TYPE', 102, 240, 128, '#ffffff');
-  svg += renderTextPath(regOtf, '101', 102, 370, 128, '#ffffff');
-  svg += `<text x="104" y="435" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="3" fill="#a1a1aa">COMPLETE TYPEFACE SET</text>`;
+  svg += renderTextPath(regOtf, 'BRU', 102, 240, 138, '#ffffff');
+  svg += renderTextPath(regOtf, 'TEK', 102, 378, 138, '#ffffff');
+  svg += `<text x="104" y="445" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="3" fill="#a1a1aa">COMPLETE TYPEFACE SET</text>`;
+  svg += `<text x="104" y="1450" font-family="Arial, sans-serif" font-size="20" font-weight="600" fill="#a1a1aa">SIL OFL-1.1 OPEN FONT</text>`;
   svg += `<text x="104" y="1485" font-family="Arial, sans-serif" font-size="20" font-weight="600" fill="#a1a1aa">OTF • TTF • WOFF2 • SVG</text>`;
   svg += `<text x="104" y="1520" font-family="Arial, sans-serif" font-size="20" font-weight="600" fill="#a1a1aa">REGULAR + 20° ITALIC + VN</text>`;
   svg += `<text x="104" y="1555" font-family="Arial, sans-serif" font-size="20" font-weight="600" fill="#71717a">${regOtf.glyphs.length} GLYPHS • LATIN + VIETNAMESE</text>`;
@@ -86,32 +87,30 @@ function buildFlagshipPoster() {
   svg += `<line x1="${rx}" y1="1152" x2="2260" y2="1152" stroke="#e2e8f0" stroke-width="2"/>`;
 
   svg += `<text x="${rx}" y="1202" font-family="Arial, sans-serif" font-size="19" font-weight="700" letter-spacing="3" fill="#64748b">20° ITALIC &amp; VIETNAMESE KEYBOARD SPECIMEN</text>`;
-  svg += renderTextPath(itaOtf, 'Typography 101 — 2026!', rx, 1326, 116, '#0a0a0a');
+  svg += renderTextPath(itaOtf, 'Brutek Display — 2026!', rx, 1326, 116, '#0a0a0a');
   svg += renderTextPath(vnItaOtf, 'Tiếng Việt thật đẹp — Phở Hà Nội 45.000₫', rx, 1456, 72, '#0a0a0a');
   svg += renderTextPath(regTtf, 'TTF Verified: Café Crème • Übergröße • Sài Gòn', rx, 1554, 62, '#334155');
 
   svg += `</svg>`;
-  fs.writeFileSync(path.join(SPECIMENS, 'typography101-specimen-poster.svg'), svg);
+  fs.writeFileSync(path.join(SPECIMENS, 'brutek-specimen-poster.svg'), svg);
   const png = new Resvg(svg, { fitTo: { mode: 'width', value: 2000 } }).render().asPng();
-  fs.writeFileSync(path.join(SPECIMENS, 'typography101-specimen-poster.png'), png);
-  console.log('Rendered specimens/typography101-specimen-poster.png');
+  fs.writeFileSync(path.join(SPECIMENS, 'brutek-specimen-poster.png'), png);
+  console.log('Rendered specimens/brutek-specimen-poster.png');
 }
 
-// 2. Dedicated Vietnamese Specimen Poster (auditing EVERY vowel x tone in Regular & 20° Italic!)
+// 2. Dedicated Vietnamese Specimen Poster
 function buildVietnameseSpecimen() {
   const W = 2200, H = 1850;
   let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`;
   svg += `<rect width="${W}" height="${H}" fill="#ffffff"/>`;
   svg += `<rect x="44" y="44" width="${W - 88}" height="${H - 88}" rx="42" fill="#ffffff" stroke="#0a0a0a" stroke-width="4"/>`;
-  svg += `<text x="96" y="114" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="3" fill="#64748b">TYPOGRAPHY101 VN — VIETNAMESE KEYBOARD COMPLETE SPECIMEN (TELEX / VNI)</text>`;
+  svg += `<text x="96" y="114" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="3" fill="#64748b">BRUTEK VN — VIETNAMESE KEYBOARD COMPLETE SPECIMEN (TELEX / VNI)</text>`;
 
-  // Hero display lines
-  svg += renderTextPath(vnRegOtf, 'TIẾNG VIỆT — TYPOGRAPHY 101 VN', 96, 236, 102, '#0a0a0a');
+  svg += renderTextPath(vnRegOtf, 'TIẾNG VIỆT — BRUTEK VN 2026', 96, 236, 102, '#0a0a0a');
   svg += renderTextPath(vnItaOtf, 'Ăn quả nhớ kẻ trồng cây • Sài Gòn 2026!', 96, 354, 86, '#0a0a0a');
   svg += renderTextPath(vnRegOtf, 'Phở bò tái nạm 55.000₫ • Bánh mì & Cà phê sữa đá', 96, 462, 68, '#1e293b');
   svg += `<line x1="96" y1="506" x2="${W - 96}" y2="506" stroke="#e2e8f0" stroke-width="2"/>`;
 
-  // Complete 12-vowel x 6-tone chart (Upper + Lower) + Đ/đ/₫
   const rows = [
     ['Đ đ ₫', 'A À Á Ả Ã Ạ   a à á ả ã ạ'],
     ['Ă ă',   'Ă Ằ Ắ Ẳ Ẵ Ặ   ă ằ ắ ẳ ẵ ặ'],
@@ -127,7 +126,6 @@ function buildVietnameseSpecimen() {
     ['Y y',   'Y Ỳ Ý Ỷ Ỹ Ỵ   y ỳ ý ỷ ỹ ỵ'],
   ];
 
-  // Top special consonant row: Đ đ ₫
   svg += `<text x="96" y="558" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2" fill="#64748b">COMPLETE VIETNAMESE DIACRITIC MATRIX (6 TONES × 12 VOWELS + Đ/đ/₫)</text>`;
 
   rows.forEach(([tag, line], idx) => {
@@ -144,31 +142,30 @@ function buildVietnameseSpecimen() {
     }
   });
 
-  // Bottom 20° Italic Vietnamese test
   svg += `<line x1="96" y1="1668" x2="${W - 96}" y2="1668" stroke="#e2e8f0" stroke-width="2"/>`;
   svg += renderTextPath(vnItaOtf, 'Độc lập – Tự do – Hạnh phúc • Việt Nam 100%', 96, 1762, 76, '#0a0a0a');
 
   svg += `</svg>`;
-  fs.writeFileSync(path.join(SPECIMENS, 'typography101-vietnamese-specimen.svg'), svg);
+  fs.writeFileSync(path.join(SPECIMENS, 'brutek-vietnamese-specimen.svg'), svg);
   const png = new Resvg(svg, { fitTo: { mode: 'width', value: 2000 } }).render().asPng();
-  fs.writeFileSync(path.join(SPECIMENS, 'typography101-vietnamese-specimen.png'), png);
-  console.log('Rendered specimens/typography101-vietnamese-specimen.png');
+  fs.writeFileSync(path.join(SPECIMENS, 'brutek-vietnamese-specimen.png'), png);
+  console.log('Rendered specimens/brutek-vietnamese-specimen.png');
 }
 
-// 3. Binary Verification Proof (OTF vs TTF, Regular vs Italic, EN + VN)
+// 3. Binary Verification Proof
 function buildBinaryVerificationProof() {
   const W = 2100, H = 980;
   let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`;
   svg += `<rect width="${W}" height="${H}" fill="#ffffff"/>`;
-  svg += `<text x="50" y="58" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#0f172a">BINARY FONT RENDER VERIFICATION (OTF vs TTF • REGULAR vs 20° ITALIC • VN)</text>`;
+  svg += `<text x="50" y="58" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#0f172a">BRUTEK BINARY FONT RENDER VERIFICATION (OTF vs TTF • REGULAR vs 20° ITALIC • VN)</text>`;
 
   const rows = [
-    { label: 'Regular OTF', font: regOtf, text: 'TYPOGRAPHY 101 — Abcdefg 0123456789 & @#?!' },
-    { label: 'Regular TTF', font: regTtf, text: 'TYPOGRAPHY 101 — Abcdefg 0123456789 & @#?!' },
-    { label: 'Italic  OTF', font: itaOtf, text: 'TYPOGRAPHY 101 — Abcdefg 0123456789 & @#?!' },
-    { label: 'Italic  TTF', font: itaTtf, text: 'TYPOGRAPHY 101 — Abcdefg 0123456789 & @#?!' },
-    { label: 'VN Reg  OTF', font: vnRegOtf, text: 'Tiếng Việt thật đẹp — Phở Hà Nội 55.000₫ • Ăn quả nhớ kẻ trồng cây' },
-    { label: 'VN Ita  OTF', font: vnItaOtf, text: 'Độc lập – Tự do – Hạnh phúc • Sài Gòn & Đà Nẵng 2026!' },
+    { label: 'Brutek Reg OTF', font: regOtf, text: 'BRUTEK DISPLAY — Abcdefg 0123456789 & @#?!' },
+    { label: 'Brutek Reg TTF', font: regTtf, text: 'BRUTEK DISPLAY — Abcdefg 0123456789 & @#?!' },
+    { label: 'Brutek Ita OTF', font: itaOtf, text: 'BRUTEK DISPLAY — Abcdefg 0123456789 & @#?!' },
+    { label: 'Brutek Ita TTF', font: itaTtf, text: 'BRUTEK DISPLAY — Abcdefg 0123456789 & @#?!' },
+    { label: 'Brutek VN OTF ', font: vnRegOtf, text: 'Tiếng Việt thật đẹp — Phở Hà Nội 55.000₫ • Ăn quả nhớ kẻ trồng cây' },
+    { label: 'Brutek VN Ita ', font: vnItaOtf, text: 'Độc lập – Tự do – Hạnh phúc • Sài Gòn & Đà Nẵng 2026!' },
   ];
 
   rows.forEach((r, idx) => {
@@ -184,28 +181,28 @@ function buildBinaryVerificationProof() {
   console.log('Rendered specimens/binary-verification.png');
 }
 
-// 4. Interactive HTML Type Tester (with English + Vietnamese Keyboard Presets!)
+// 4. Interactive HTML Type Tester
 function buildHtmlDemo() {
   const html = `<!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Typography101 &amp; Typography101 VN — Live Type Tester</title>
+<title>Brutek &amp; Brutek VN — Live Type Tester</title>
 <style>
   @font-face {
-    font-family: 'Typography101 VN';
-    src: url('../dist/Typography101VN-Regular.woff2') format('woff2'),
-         url('../dist/Typography101VN-Regular.otf') format('opentype'),
-         url('../dist/Typography101VN-Regular.ttf') format('truetype');
+    font-family: 'Brutek VN';
+    src: url('../dist/BrutekVN-Regular.woff2') format('woff2'),
+         url('../dist/BrutekVN-Regular.otf') format('opentype'),
+         url('../dist/BrutekVN-Regular.ttf') format('truetype');
     font-weight: 800;
     font-style: normal;
   }
   @font-face {
-    font-family: 'Typography101 VN';
-    src: url('../dist/Typography101VN-Italic.woff2') format('woff2'),
-         url('../dist/Typography101VN-Italic.otf') format('opentype'),
-         url('../dist/Typography101VN-Italic.ttf') format('truetype');
+    font-family: 'Brutek VN';
+    src: url('../dist/BrutekVN-Italic.woff2') format('woff2'),
+         url('../dist/BrutekVN-Italic.otf') format('opentype'),
+         url('../dist/BrutekVN-Italic.ttf') format('truetype');
     font-weight: 800;
     font-style: italic;
   }
@@ -216,7 +213,7 @@ function buildHtmlDemo() {
   }
   .wrap { max-width: 1200px; margin: 0 auto; }
   header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid #27272a; padding-bottom: 20px; margin-bottom: 28px; gap: 16px; flex-wrap: wrap; }
-  h1 { font-family: 'Typography101 VN', sans-serif; font-size: 56px; margin: 0; letter-spacing: 1px; }
+  h1 { font-family: 'Brutek VN', sans-serif; font-size: 64px; margin: 0; letter-spacing: 1px; }
   .badge { font-size: 13px; color: #a1a1aa; background: #18181b; border: 1px solid #27272a; padding: 6px 12px; border-radius: 999px; }
   .controls { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-bottom: 20px; background: #18181b; padding: 14px 18px; border-radius: 12px; border: 1px solid #27272a; }
   label { font-size: 13px; color: #a1a1aa; display: flex; align-items: center; gap: 8px; }
@@ -225,13 +222,13 @@ function buildHtmlDemo() {
   textarea {
     width: 100%; min-height: 240px; padding: 28px; border-radius: 16px;
     background: #ffffff; color: #0a0a0a; border: none; outline: none;
-    font-family: 'Typography101 VN', sans-serif; font-size: 68px; line-height: 1.3;
+    font-family: 'Brutek VN', sans-serif; font-size: 68px; line-height: 1.3;
     resize: vertical;
   }
   .sets { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 18px; margin-top: 32px; }
   .card { background: #18181b; border: 1px solid #27272a; border-radius: 14px; padding: 20px; }
   .card h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: #a1a1aa; margin: 0 0 14px; }
-  .glyphs { font-family: 'Typography101 VN', sans-serif; font-size: 42px; line-height: 1.45; word-break: break-word; color: #ffffff; }
+  .glyphs { font-family: 'Brutek VN', sans-serif; font-size: 42px; line-height: 1.45; word-break: break-word; color: #ffffff; }
   .italic { font-style: italic; }
 </style>
 </head>
@@ -239,10 +236,10 @@ function buildHtmlDemo() {
 <div class="wrap">
   <header>
     <div>
-      <h1>TYPOGRAPHY 101 VN</h1>
-      <div style="color:#a1a1aa;margin-top:6px;">Complete Typeable Font Family — Original Lowercase + Capitals + Numbers + Extended Latin + Full Vietnamese (Telex/VNI)</div>
+      <h1>BRUTEK</h1>
+      <div style="color:#a1a1aa;margin-top:6px;">Modular Neo-Brutalist Display Typeface — Regular &amp; 20° Italic • Extended Latin + Vietnamese (Telex/VNI) • SIL OFL-1.1</div>
     </div>
-    <span class="badge">OTF • TTF • WOFF2 • Regular &amp; 20° Italic</span>
+    <span class="badge">OTF • TTF • WOFF2 • 315 Glyphs</span>
   </header>
 
   <div class="controls">
@@ -255,7 +252,7 @@ function buildHtmlDemo() {
     <button onclick="invertTheme()">Light / Dark</button>
   </div>
 
-  <textarea id="editor" spellcheck="false">TYPOGRAPHY 101 — 2026!
+  <textarea id="editor" spellcheck="false">BRUTEK DISPLAY — 2026!
 Tiếng Việt thật đẹp • Phở Hà Nội &amp; Sài Gòn 55.000₫
 Ăn quả nhớ kẻ trồng cây • Độc lập – Tự do – Hạnh phúc</textarea>
 
@@ -282,7 +279,7 @@ Tiếng Việt thật đẹp • Phở Hà Nội &amp; Sài Gòn 55.000₫
     </div>
     <div class="card">
       <h2>20° Italic Preview (EN + VN)</h2>
-      <div class="glyphs italic">Typography 101 • Tiếng Việt 2026! 0123456789 &amp; 55.000₫</div>
+      <div class="glyphs italic">Brutek Display • Tiếng Việt 2026! 0123456789 &amp; 55.000₫</div>
     </div>
   </div>
 </div>
@@ -296,9 +293,9 @@ Tiếng Việt thật đẹp • Phở Hà Nội &amp; Sài Gòn 55.000₫
   }
   function setPreset(lang) {
     if (lang === 'vn') {
-      ed.value = 'TIẾNG VIỆT — TYPOGRAPHY 101 VN\\nPhở bò tái nạm 55.000₫ • Bánh mì & Cà phê sữa đá\\nĂn quả nhớ kẻ trồng cây • Độc lập – Tự do – Hạnh phúc';
+      ed.value = 'TIẾNG VIỆT — BRUTEK VN 2026\\nPhở bò tái nạm 55.000₫ • Bánh mì & Cà phê sữa đá\\nĂn quả nhớ kẻ trồng cây • Độc lập – Tự do – Hạnh phúc';
     } else {
-      ed.value = 'TYPOGRAPHY 101 — 2026!\\nThe quick brown fox jumps over 123 lazy dogs.\\nCafé Crème • Übergröße • Æther Œuvre Øresund $49.99';
+      ed.value = 'BRUTEK DISPLAY — 2026!\\nThe quick brown fox jumps over 123 lazy dogs.\\nCafé Crème • Übergröße • Æther Œuvre Øresund $49.99';
     }
   }
   function update() {

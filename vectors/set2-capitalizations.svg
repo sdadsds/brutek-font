@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="2180" height="1930" viewBox="0 0 2180 1930">
   <rect width="100%" height="100%" fill="#ffffff"/>
-  <text x="40" y="54" font-family="Arial, sans-serif" font-size="34" font-weight="bold" fill="#0f172a">TYPOGRAPHY101 — Set 2: Capitalizations (A–Z)</text>
-  <text x="40" y="86" font-family="Arial, sans-serif" font-size="18" fill="#64748b">Clean modular uppercase alphabet faithful to TYPOGRAPHY101</text>
+  <text x="40" y="54" font-family="Arial, sans-serif" font-size="34" font-weight="bold" fill="#0f172a">BRUTEK — Set 2: Capitalizations (A–Z)</text>
+  <text x="40" y="86" font-family="Arial, sans-serif" font-size="18" fill="#64748b">Clean modular uppercase alphabet faithful to Brutek</text>
   <g id="glyph-A">
     <rect x="40" y="110" width="300" height="440" fill="none" stroke="#f1f5f9" stroke-width="1"/>
     <path d="M 284.24 312.54 C 284.24 310.70 283.68 308.91 282.64 307.39 L 211.86 204.05 C 209.60 200.74 205.84 198.76 201.83 198.76 L 178.17 198.76 C 174.16 198.76 170.40 200.74 168.14 204.05 L 97.36 307.39 C 96.32 308.91 95.76 310.70 95.76 312.54 L 95.76 426.76 C 95.76 436.83 103.93 445.00 114.00 445.00 L 174.80 445.00 L 174.80 381.16 C 174.80 372.77 181.61 365.96 190.00 365.96 L 201.40 365.96 C 203.50 365.96 205.20 367.66 205.20 369.76 L 205.20 426.76 C 205.20 436.83 213.37 445.00 223.44 445.00 L 284.24 445.00 L 284.24 312.54 Z M 174.80 340.88 L 174.80 247.40 C 174.80 239.01 181.61 232.20 190.00 232.20 L 201.40 232.20 C 203.50 232.20 205.20 233.90 205.20 236.00 L 205.20 329.48 C 205.20 337.87 198.39 344.68 190.00 344.68 L 178.60 344.68 C 176.50 344.68 174.80 342.98 174.80 340.88 Z" fill="#000000" fill-rule="nonzero"/>

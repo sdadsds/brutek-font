@@ -1,7 +1,7 @@
 {
-  "name": "typography101-font",
+  "name": "brutek-font",
   "version": "1.0.0",
-  "description": "Complete typeable font family (Regular & 20° Italic, Extended Latin & Vietnamese Telex/VNI) built from TYPOGRAPHY101.ai",
+  "description": "Brutek — Modular neo-brutalist display typeface (Regular & 20° Italic, Extended Latin & Vietnamese Telex/VNI)",
   "license": "OFL-1.1",
   "private": true,
   "scripts": {

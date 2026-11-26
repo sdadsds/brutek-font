@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="2180" height="2370" viewBox="0 0 2180 2370">
   <rect width="100%" height="100%" fill="#ffffff"/>
-  <text x="40" y="54" font-family="Arial, sans-serif" font-size="34" font-weight="bold" fill="#0f172a">TYPOGRAPHY101 — Set 1: Original Lowercase (a–z) + Emblem</text>
-  <text x="40" y="86" font-family="Arial, sans-serif" font-size="18" fill="#64748b">Losslessly extracted vector outlines from TYPOGRAPHY101.ai</text>
+  <text x="40" y="54" font-family="Arial, sans-serif" font-size="34" font-weight="bold" fill="#0f172a">BRUTEK — Set 1: Original Lowercase (a–z) + Emblem</text>
+  <text x="40" y="86" font-family="Arial, sans-serif" font-size="18" fill="#64748b">Losslessly extracted vector outlines from original artwork</text>
   <g id="glyph-a">
     <rect x="40" y="110" width="300" height="440" fill="none" stroke="#f1f5f9" stroke-width="1"/>
     <path d="M 201.40 409.13 C 201.40 419.28 193.16 427.52 183.01 427.52 C 180.58 427.52 178.60 425.55 178.60 423.11 L 178.60 388.91 C 178.60 378.76 186.84 370.52 196.99 370.52 C 199.42 370.52 201.40 372.49 201.40 374.93 L 201.40 409.13 Z M 253.83 280.84 L 126.17 280.84 C 116.09 280.84 107.92 289.01 107.92 299.09 L 107.92 328.71 C 107.92 338.79 116.09 346.96 126.17 346.96 L 178.60 346.96 L 178.60 316.71 C 178.60 306.56 186.84 298.32 196.99 298.32 C 198.21 298.32 199.31 298.81 200.11 299.61 C 200.91 300.41 201.40 301.51 201.40 302.73 L 201.40 348.57 C 201.40 357.75 193.96 365.20 184.77 365.20 L 127.65 365.20 C 116.75 365.20 107.92 374.03 107.92 384.93 L 107.92 426.75 C 107.92 436.83 116.09 445.00 126.17 445.00 L 272.08 445.00 L 272.08 299.09 C 272.08 289.01 263.91 280.84 253.83 280.84 Z" fill="#000000" fill-rule="nonzero"/>

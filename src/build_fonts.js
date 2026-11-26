@@ -138,9 +138,9 @@ function buildFontStyle(allGlyphs, familyName, filePrefix, styleName, italicDeg 
     ascender: 1180,
     descender: -300,
     glyphs: otGlyphs,
-    copyright: 'Copyright (c) 2026 Dieu Anh (https://github.com/sdadsds/typography101-font), with Reserved Font Name "Typography101" and "Typography101 VN".',
+    copyright: 'Copyright (c) 2026 Dieu Anh (https://github.com/sdadsds/brutek-font), with Reserved Font Name "Brutek" and "Brutek VN".',
     designer: 'Dieu Anh',
-    designerURL: 'https://github.com/sdadsds/typography101-font',
+    designerURL: 'https://github.com/sdadsds/brutek-font',
     license: 'This Font Software is licensed under the SIL Open Font License, Version 1.1. Available at https://openfontlicense.org',
     licenseURL: 'https://openfontlicense.org',
     version: 'Version 1.100'
@@ -215,8 +215,8 @@ ${kernXml}
 
   const ttfResult = svg2ttf(svgFontXml, {
     copyright: 'Copyright (c) 2026 Dieu Anh — SIL Open Font License 1.1 (https://openfontlicense.org)',
-    description: 'Complete modular typeface derived from TYPOGRAPHY101.ai with full Vietnamese keyboard support (OFL-1.1)',
-    url: 'https://github.com/sdadsds/typography101-font',
+    description: 'Brutek — Modular neo-brutalist display typeface with Extended Latin & Vietnamese (OFL-1.1)',
+    url: 'https://github.com/sdadsds/brutek-font',
     subfamily: styleName,
     version: '1.1'
   });
@@ -274,11 +274,11 @@ function exportVectorSets(sets) {
     fs.writeFileSync(path.join(OUT_VECTORS, filename), svg, 'utf8');
   }
 
-  writeVectorSheet('set1-original-lowercase.svg', 'TYPOGRAPHY101 — Set 1: Original Lowercase (a–z) + Emblem', 'Losslessly extracted vector outlines from TYPOGRAPHY101.ai', sets.orig, 7);
-  writeVectorSheet('set2-capitalizations.svg', 'TYPOGRAPHY101 — Set 2: Capitalizations (A–Z)', 'Clean modular uppercase alphabet faithful to TYPOGRAPHY101', sets.upper, 7);
-  writeVectorSheet('set3-numbers.svg', 'TYPOGRAPHY101 — Set 3: Numbers (0–9)', 'Cleaned lining display numerals at cap height (324u)', sets.nums, 5);
-  writeVectorSheet('set4-special-letters.svg', 'TYPOGRAPHY101 — Set 4: Special Letters & Extended Latin', 'Bespoke ligatures & special letters + European accented letters', sets.special, 10);
-  writeVectorSheet('set5-punctuation-and-symbols.svg', 'TYPOGRAPHY101 — Set 5: Punctuation, Currency & Symbols', 'Matching punctuation, brackets, math, currency, and display symbols', sets.punct, 10);
+  writeVectorSheet('set1-original-lowercase.svg', 'BRUTEK — Set 1: Original Lowercase (a–z) + Emblem', 'Losslessly extracted vector outlines from original artwork', sets.orig, 7);
+  writeVectorSheet('set2-capitalizations.svg', 'BRUTEK — Set 2: Capitalizations (A–Z)', 'Clean modular uppercase alphabet faithful to Brutek', sets.upper, 7);
+  writeVectorSheet('set3-numbers.svg', 'BRUTEK — Set 3: Numbers (0–9)', 'Cleaned lining display numerals at cap height (324u)', sets.nums, 5);
+  writeVectorSheet('set4-special-letters.svg', 'BRUTEK — Set 4: Special Letters & Extended Latin', 'Bespoke ligatures & special letters + European accented letters', sets.special, 10);
+  writeVectorSheet('set5-punctuation-and-symbols.svg', 'BRUTEK — Set 5: Punctuation, Currency & Symbols', 'Matching punctuation, brackets, math, currency, and display symbols', sets.punct, 10);
 
   // Full Vietnamese alphabet sheet (ordered logically by vowel family!)
   const vnOrder = [
@@ -301,7 +301,7 @@ function exportVectorSets(sets) {
   for (const ch of vnOrder) if (allCombined[ch]) vnOrderedObj[ch] = allCombined[ch];
   writeVectorSheet(
     'set6-vietnamese.svg',
-    'TYPOGRAPHY101 VN — Set 6: Complete Vietnamese Keyboard Set (Telex / VNI)',
+    'BRUTEK VN — Set 6: Complete Vietnamese Keyboard Set (Telex / VNI)',
     'All 135 Vietnamese characters: Đ/đ, ₫, and all 6 tones across A Ă Â E Ê I O Ô Ơ U Ư Y (upper & lower)',
     vnOrderedObj,
     12
@@ -339,13 +339,13 @@ function main() {
   console.log(`  - Special & Extended Latin: ${Object.keys(special).length}`);
   console.log(`  - Vietnamese Keyboard Additions (Đ/đ/₫ + Ă/Â/Ê/Ô/Ơ/Ư + 6 tones): ${Object.keys(vn).length}`);
 
-  // 1. Main complete family (includes full English + European + Vietnamese support!)
-  buildFontStyle(allGlyphs, 'Typography101', 'Typography101', 'Regular', 0);
-  buildFontStyle(allGlyphs, 'Typography101', 'Typography101', 'Italic', 20);
+  // 1. Main complete family ("Brutek" — full English + Extended Latin + Vietnamese support)
+  buildFontStyle(allGlyphs, 'Brutek', 'Brutek', 'Regular', 0);
+  buildFontStyle(allGlyphs, 'Brutek', 'Brutek', 'Italic', 20);
 
-  // 2. Dedicated Vietnamese Edition family ("Typography101 VN") for direct Vietnamese keyboard workflows
-  buildFontStyle(allGlyphs, 'Typography101 VN', 'Typography101VN', 'Regular', 0);
-  buildFontStyle(allGlyphs, 'Typography101 VN', 'Typography101VN', 'Italic', 20);
+  // 2. Dedicated Vietnamese Edition family ("Brutek VN") for Vietnamese keyboard workflows
+  buildFontStyle(allGlyphs, 'Brutek VN', 'BrutekVN', 'Regular', 0);
+  buildFontStyle(allGlyphs, 'Brutek VN', 'BrutekVN', 'Italic', 20);
 
   exportVectorSets({ orig, upper, nums, punct, special, vn });
 }
