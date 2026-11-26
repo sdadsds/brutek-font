@@ -117,83 +117,85 @@ function markDotBelow(cx, baseY = -58) {
 }
 
 /**
- * Attached sculptural Vietnamese horn (dấu móc) for Ơ, ơ, Ư, ư
- * Attaches seamlessly to the top-right shoulder of O/o/U/u!
+ * Attached authentic upward-curling Vietnamese horn (dấu móc) for Ơ, ơ, Ư, ư!
+ * Attaches seamlessly to the top-right shoulder of O/o/U/u and curls OUT and UPWARD
+ * (classic geometric Vietnamese horn — never a downward beak!).
  */
 function attachHorn(baseItem, baseBBox, isUpper) {
   const rightX = baseBBox.w;
   const topY = baseBBox.maxY;
-  // Curved horn curving cleanly out from upper-right shoulder (y = topY - 68 .. topY + 20)
   const hornW = isUpper ? 54 : 48;
-  const hornH = isUpper ? 84 : 74;
-  const y0 = topY - (isUpper ? 72 : 62);
-  const outer = rrect(rightX - 24, y0, hornW + 24, hornH, { tl: 0, tr: 32, br: 34, bl: 0 });
-  const inner = rrect(rightX - 10, y0 - 8, hornW - 14, hornH - 30, { tr: 16 });
-  // Smooth clean horn hook attaching directly to the right wall of the base glyph
+  const hornH = isUpper ? 88 : 78;
+  // Base of horn attaches smoothly to the upper-right wall of O/o/U/u and rises slightly above topY!
+  const y0 = topY - (isUpper ? 66 : 58);
+  // Upward-curling C-cup / J-hook facing up-left: rounded bottom-right outer curve (r=38), rounded top-right tip (r=18)!
+  const outer = rrect(rightX - 28, y0, hornW + 28, hornH, { tl: 0, tr: 18, br: 42, bl: 0 });
+  // Carve out the upper-left interior of the horn so it curls cleanly OUT and UP from the right wall!
+  const inner = rrect(rightX - 16, y0 + 28, hornW - 14, hornH, { bl: 22, br: 14 });
   const hornHook = subtractAll(outer, [inner]);
-  // Cleanly trim bottom tip of horn to avoid any sharp overhang below y0 + 8
-  const hornClean = subtractAll(hornHook, [rrect(rightX + 2, y0 - 16, hornW + 20, 22)]);
-  return uniteAll([baseItem, hornClean]);
+  // Cleanly trim anything jutting left of rightX - 18 above the attachment point so top of O/U stays razor-clean
+  const trimTopLeft = rrect(rightX - 36, y0 + 30, 36, hornH + 10);
+  const cleanHorn = subtractAll(hornHook, [trimTopLeft]);
+  return uniteAll([baseItem, cleanHorn]);
 }
 
 function addTone(baseItem, baseBBox, vowelMod, tone, isUpper, baseChar) {
   const cx = baseBBox.w / 2;
-  // For horned letters (Ơ, ơ, Ư, ư), visual body center stays over the main letter body (not pulled right by the horn!)
+  // For horned letters (Ơ, ơ, Ư, ư), keep visual center over the main O/U body (not pulled right by the horn!)
   const bodyCenter = (vowelMod === 'horn') ? (isUpper ? 122 : 108) : cx;
   const topY = baseBBox.maxY;
-  const gap = 16;
+  // Generous clean vertical breathing room above base glyph!
+  const gap = isUpper ? 26 : 22;
   const parts = [baseItem];
 
   // Dot below (dấu nặng)
   if (tone === 'dotbelow') {
     if (vowelMod === 'circumflex') parts.push(markCircumflex(bodyCenter, topY + gap));
     else if (vowelMod === 'breve') parts.push(markBreve(bodyCenter, topY + gap));
-    // Special placement for lowercase y (descender at -73): place dot-below cleanly below-left or at y=-118?
-    // Wait: lowercase y has its descender bar at x=30..216, y=-72..0, with open space on bottom-left (x=0..85, y=-72..-23)!
-    // Better yet: place dot-below right at y=-114 centered, OR tucked below-left! Centered at y=-114 is clearest and never collides!
-    const dotY = (baseChar === 'y') ? -118 : -58;
+    const dotY = (baseChar === 'y') ? -118 : -62;
     parts.push(markDotBelow(bodyCenter, dotY));
     return uniteAll(parts);
   }
 
-  // Combined base vowel modifier + tone (authentic Vietnamese side-nested stacking with crisp breathing gap!)
+  // Combined circumflex + tone (side-nested with generous crisp breathing separation!)
   if (vowelMod === 'circumflex') {
     const cfY = topY + gap;
     parts.push(markCircumflex(bodyCenter, cfY, 114, 50));
     if (tone === 'acute') {
-      // Crisp side-nested acute cleanly separated from upper-right slope of circumflex!
-      parts.push(markAcute(bodyCenter + 54, cfY + 34, 0.84));
+      parts.push(markAcute(bodyCenter + 58, cfY + 42, 0.84));
     } else if (tone === 'grave') {
-      // Crisp side-nested grave cleanly separated from upper-left slope of circumflex!
-      parts.push(markGrave(bodyCenter - 54, cfY + 34, 0.84));
+      parts.push(markGrave(bodyCenter - 58, cfY + 42, 0.84));
     } else if (tone === 'hook') {
-      parts.push(markHookAbove(bodyCenter + 48, cfY + 36, 0.80));
+      parts.push(markHookAbove(bodyCenter + 54, cfY + 44, 0.80));
     } else if (tone === 'tilde') {
-      parts.push(markTilde(bodyCenter, cfY + 62, 0.82));
+      parts.push(markTilde(bodyCenter, cfY + 70, 0.82));
     }
     return uniteAll(parts);
   }
 
+  // Combined breve + tone (clear generous vertical gap between breve bowl and tone mark!)
   if (vowelMod === 'breve') {
     const brY = topY + gap;
     parts.push(markBreve(bodyCenter, brY, 114, 44));
     if (tone === 'acute') {
-      parts.push(markAcute(bodyCenter + 22, brY + 46, 0.80));
+      parts.push(markAcute(bodyCenter + 24, brY + 60, 0.80));
     } else if (tone === 'grave') {
-      parts.push(markGrave(bodyCenter - 22, brY + 46, 0.80));
+      parts.push(markGrave(bodyCenter - 24, brY + 60, 0.80));
     } else if (tone === 'hook') {
-      parts.push(markHookAbove(bodyCenter, brY + 46, 0.78));
+      parts.push(markHookAbove(bodyCenter, brY + 60, 0.78));
     } else if (tone === 'tilde') {
-      parts.push(markTilde(bodyCenter, brY + 56, 0.80));
+      parts.push(markTilde(bodyCenter, brY + 68, 0.80));
     }
     return uniteAll(parts);
   }
 
   // Plain or horned vowel + single top tone
-  if (tone === 'acute') parts.push(markAcute(bodyCenter, topY + gap));
-  else if (tone === 'grave') parts.push(markGrave(bodyCenter, topY + gap));
-  else if (tone === 'hook') parts.push(markHookAbove(bodyCenter, topY + gap));
-  else if (tone === 'tilde') parts.push(markTilde(bodyCenter, topY + gap));
+  // For horned vowels, topY includes the +22u horn tip, so position single tone nicely above main body cap/x-height!
+  const toneBaseY = (vowelMod === 'horn') ? ((isUpper ? 324 : 216) + gap + 6) : (topY + gap);
+  if (tone === 'acute') parts.push(markAcute(bodyCenter, toneBaseY));
+  else if (tone === 'grave') parts.push(markGrave(bodyCenter, toneBaseY));
+  else if (tone === 'hook') parts.push(markHookAbove(bodyCenter, toneBaseY));
+  else if (tone === 'tilde') parts.push(markTilde(bodyCenter, toneBaseY));
 
   return uniteAll(parts);
 }

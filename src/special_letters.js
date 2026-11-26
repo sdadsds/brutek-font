@@ -362,7 +362,8 @@ function buildSpecialLetterGlyphs(origGlyphs, upperGlyphs) {
       const baseItem = subpathsToPaper(baseGlyph.subpaths);
       const cx = baseGlyph.bbox.w / 2;
       const topY = baseGlyph.bbox.maxY;
-      const gap = accent === 'cedilla' ? 0 : 18;
+      const isUpper = baseCh === baseCh.toUpperCase() && baseCh !== '\u0131';
+      const gap = accent === 'cedilla' ? 0 : (isUpper ? 26 : 22);
       const mark = buildDiacritic(accent, cx, topY + gap);
       if (accent === 'cedilla') {
         return uniteAll([baseItem, mark]);
